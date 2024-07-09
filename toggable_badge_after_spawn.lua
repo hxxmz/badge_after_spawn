@@ -84,3 +84,21 @@ local function cmd()
 		end
 	end
 end
+
+--[[
+local function cmd()
+    if config_table.Options.isBadgeAfterSpawnEnabled then
+        config_table.Options.isBadgeAfterSpawnEnabled = false
+    else
+        config_table.Options.isBadgeAfterSpawnEnabled = true
+    end
+    
+    if inicfg.save(config_table, config_file_path) then
+        local status = config_table.Options.isBadgeAfterSpawnEnabled and "On" or "Off"
+        sampAddChatMessage("*** {FFFFFF}Badge After Spawn: {AAAAFF}" .. status, -1)
+    else
+        sampAddChatMessage("--- {AAAAFF}Badge After Spawn: {FFFFFF}Badge toggle in config failed - contact the developer for help.", -1)
+    end
+end
+]]--
+
