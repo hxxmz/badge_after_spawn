@@ -36,6 +36,21 @@ else
 	end
 end
 
+--[[
+if doesFileExist(config_file_path) then
+	config_table = inicfg.load(nil, config_file_path)
+else
+	local new_config = io.open(config_file_path, "w+")
+	if new_config then
+		new_config:write("Options = {\nisBadgeAfterSpawnEnabled = true\n}")
+		new_config:close()
+		config_table = inicfg.load(nil, config_file_path)
+  	else
+		sampAddChatMessage("--- {FFFFFF}Badge after Spawn by {AAAAFF}Hyam{FFFFFF}: Config file creation failed - contact the developer for help.", -1)
+  	end
+end
+]]--
+
 -----------------------------------------------------
 -- MAIN
 -----------------------------------------------------
