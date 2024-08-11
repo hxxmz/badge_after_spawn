@@ -24,22 +24,6 @@ local config_table
 if doesFileExist(config_file_path) then
 	config_table = inicfg.load(nil, config_file_path)
 else
-	local new_config = io.open(config_file_path, "w")
-	new_config:close()
-	new_config = nil
-	
-	config_table = {Options = {isBadgeAfterSpawnEnabled = true}}
-
-	if not inicfg.save(config_table, config_file_path) then
-		sampAddChatMessage("--- {FFFFFF}Badge after Spawn by {AAAAFF}Hyam{FFFFFF}: Config file creation failed - contact the developer for help.", -1)
-		
-	end
-end
-
---[[
-if doesFileExist(config_file_path) then
-	config_table = inicfg.load(nil, config_file_path)
-else
 	local new_config = io.open(config_file_path, "w+")
 	if new_config then
 		new_config:write("Options = {\nisBadgeAfterSpawnEnabled = true\n}")
@@ -49,7 +33,7 @@ else
 		sampAddChatMessage("--- {FFFFFF}Badge after Spawn by {AAAAFF}Hyam{FFFFFF}: Config file creation failed - contact the developer for help.", -1)
   	end
 end
-]]--
+
 
 -----------------------------------------------------
 -- MAIN
@@ -80,27 +64,6 @@ end
 -- LOCALLY DECLARED FUNCTIONS
 -----------------------------------------------------
 
--- local toggle = false
-
-local function cmd()
-	if config_table.Options.isBadgeAfterSpawnEnabled then
-		config_table.Options.isBadgeAfterSpawnEnabled = false
-		if inicfg.save(config_table, config_file_path) then
-			sampAddChatMessage("*** {FFFFFF}Badge After Spawn: {AAAAFF}Off", -1)
-		else
-			sampAddChatMessage("--- {AAAAFF}Badge After Spawn: {FFFFFF}Badge toggle in config failed - contact the developer for help.", -1)
-		end
-	else 
-		config_table.Options.isBadgeAfterSpawnEnabled = true
-		if inicfg.save(config_table, config_file_path) then
-			sampAddChatMessage("*** {FFFFFF}Badge After Spawn: {AAAAFF}On", -1)
-		else
-			sampAddChatMessage("--- {AAAAFF}Badge After Spawn: {FFFFFF}Badge toggle in config failed - contact the developer for help.", -1)
-		end
-	end
-end
-
---[[
 local function cmd()
     if config_table.Options.isBadgeAfterSpawnEnabled then
         config_table.Options.isBadgeAfterSpawnEnabled = false
@@ -115,5 +78,3 @@ local function cmd()
         sampAddChatMessage("--- {AAAAFF}Badge After Spawn: {FFFFFF}Badge toggle in config failed - contact the developer for help.", -1)
     end
 end
-]]--
-
