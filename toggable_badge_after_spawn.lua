@@ -55,7 +55,7 @@ end
 
 function sampev.onServerMessage(c, text)
 	local result, msg = string.find(text, "Your hospital bill was paid for by your faction insurance.")
-	if result and toggle then
+	if result and config_table.Options.isBadgeAfterSpawnEnabled then
 		sampSendChat("/badge")
 	end
 end
@@ -65,11 +65,8 @@ end
 -----------------------------------------------------
 
 local function cmd()
-    if config_table.Options.isBadgeAfterSpawnEnabled then
-        config_table.Options.isBadgeAfterSpawnEnabled = false
-    else
-        config_table.Options.isBadgeAfterSpawnEnabled = true
-    end
+    
+	config_table.Options.isBadgeAfterSpawnEnabled = not config_table.Options.isBadgeAfterSpawnEnabled
     
     if inicfg.save(config_table, config_file_path) then
         local status = config_table.Options.isBadgeAfterSpawnEnabled and "On" or "Off"
