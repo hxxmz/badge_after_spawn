@@ -57,8 +57,9 @@ end
 -----------------------------------------------------
 
 function sampev.onServerMessage(c, text)
-    local result = string.find(text, "Your hospital bill was paid for by your faction insurance.")
-    if result and config_table.Options.isBadgeAfterSpawnEnabled then
+    local resultNoBill = string.find(text, "Your hospital bill was paid for by your faction insurance.")
+    local resultBill = string.find(text, "Your hospital bill comes to $150. Have a nice day!")
+    if (resultNoBill or resultBill) and config_table.Options.isBadgeAfterSpawnEnabled then
         sampSendChat("/badge")
     end
 end
